@@ -14,4 +14,6 @@ public interface Constant {
     String SCORE_LIST = "movie?sort_by=vote_average.desc&api_key=";
     //网络配置
     long DEFAULT_TIME_OUT = 60;
+    String DOUBAN = "https://api.douban.com/v2/movie/";
+    String DOUBAN_PARAM = "";
 }

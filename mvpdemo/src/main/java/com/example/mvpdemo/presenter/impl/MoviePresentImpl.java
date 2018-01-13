@@ -3,8 +3,8 @@ package com.example.mvpdemo.presenter.impl;
 import com.example.mvpdemo.base.BasePresenter;
 import com.example.mvpdemo.model.net.ResponseObserver;
 import com.example.mvpdemo.model.net.RetrofitWrapper;
-import com.example.mvpdemo.model.net.service.MovieService2;
-import com.example.mvpdemo.model.pojo.MovieInfo;
+import com.example.mvpdemo.model.net.service.MovieService;
+import com.example.mvpdemo.model.pojo.DoubanMovie;
 import com.example.mvpdemo.presenter.IMoviePresenter;
 import com.example.mvpdemo.util.LogUtil;
 import com.example.mvpdemo.view.IMovieView;
@@ -26,9 +26,9 @@ public class MoviePresentImpl extends BasePresenter<IMovieView> implements IMovi
     }
 
     @Override
-    public void getMovieInfo() {
-        MovieService2 movieService = RetrofitWrapper.getInstence().create(MovieService2.class);
-        mCompositeSubscription.add(movieService.getMovieInfo("c.login","aaa",20)
+    public void getMovieInfo(int start,int count) {
+        MovieService movieService = RetrofitWrapper.getInstence().create(MovieService.class);
+        mCompositeSubscription.add(movieService.getMovieInfo(start,count)
                 .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {
@@ -42,7 +42,7 @@ public class MoviePresentImpl extends BasePresenter<IMovieView> implements IMovi
                         getMvpView().hideLoading();
                     }
                 })
-        .subscribe(new ResponseObserver<MovieInfo>(){
+        .subscribe(new ResponseObserver<DoubanMovie>(){
             @Override
             public void onError(Throwable e) {
                 getMvpView().showError(e);
@@ -50,7 +50,7 @@ public class MoviePresentImpl extends BasePresenter<IMovieView> implements IMovi
             }
 
             @Override
-            public void onSuccess(MovieInfo movieInfo) {
+            public void onSuccess(DoubanMovie movieInfo) {
                 getMvpView().setMovieInfo(movieInfo);
             }
         }));

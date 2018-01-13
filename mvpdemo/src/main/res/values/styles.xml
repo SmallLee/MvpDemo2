@@ -10,4 +10,9 @@
     <declare-styleable name="RationImageView">
         <attr name="image_ration" format="float"/>
     </declare-styleable>
+
+    <style name="Theme.AppStartLoad" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
 </resources>

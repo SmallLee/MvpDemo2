@@ -2,7 +2,7 @@ package com.example.mvpdemo.util;
 
 import android.content.Context;
 
-import com.example.mvpdemo.common.MovieApplication;
+import com.example.mvcdemo.BuildConfig;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -15,7 +15,7 @@ public class LogUtil {
     public static void initLog(Context context){
         Logger.init("MvpDemo")
         .methodCount(0);
-        mIsDebug = MovieApplication.getInstance().isDebug();
+        mIsDebug = BuildConfig.MODE_DEBUG;
     }
 
     public static void v(String msg,Object... obj){
@@ -38,9 +38,15 @@ public class LogUtil {
             Logger.d(msg,obj);
         }
     }
+
     public static void json(String json){
         if (mIsDebug) {
             Logger.json(json);
         }
+    }
+
+    public LogUtil init(String tag) {
+        Logger.init(tag);
+        return this;
     }
 }

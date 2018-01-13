@@ -4,11 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <com.example.mvpdemo.view.ui.RationImageView
         android:id="@+id/iv_movie_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@mipmap/ic_launcher"
         app:image_ration="1.5"
         />
 </LinearLayout>

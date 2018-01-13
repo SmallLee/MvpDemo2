@@ -28,10 +28,12 @@ public class LogginInterceptor implements Interceptor {
         LogUtil.d(String.format("Sending Request %s on %n %s",request.url(), request.headers()));
         FormBody requestBody = (FormBody) request.body();
         HashMap<String,String> params = new HashMap<>();
-        for (int i = 0; i < requestBody.size(); i++) {
-            params.put(requestBody.encodedName(i), requestBody.encodedValue(i) + "\n");
+        if (requestBody!=null && requestBody.size() > 0 ) {
+            for (int i = 0; i < requestBody.size(); i++) {
+                params.put(requestBody.encodedName(i), requestBody.encodedValue(i) + "\n");
+            }
+            LogUtil.d(params.toString());
         }
-        LogUtil.d(params.toString());
         //处理响应
         Response response = chain.proceed(request);
         LogUtil.d(response.code()+"");

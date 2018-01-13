@@ -3,20 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mvcdemo.com.example.mvpdemo.view.MainActivity"
+    tools:context="com.example.mvpdemo.view.MainActivity"
     android:orientation="vertical"
+    android:background="#f0f0f0"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电影列表"
+            android:textSize="24sp"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <com.chanven.lib.cptr.PtrClassicFrameLayout
+        android:id="@+id/ptr_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        ptr:ptr_duration_to_close="200"
+        ptr:ptr_duration_to_close_header="700"
+        ptr:ptr_keep_header_when_refresh="true"
+        ptr:ptr_pull_to_fresh="false"
+        ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+        ptr:ptr_resistance="1.8"
+        >
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </android.support.v7.widget.RecyclerView>
+    </com.chanven.lib.cptr.PtrClassicFrameLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="请求数据"
-        android:onClick="request"
-        />
-   <GridView
-       android:id="@+id/grid_view"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:numColumns="2"
-       />
 </LinearLayout>

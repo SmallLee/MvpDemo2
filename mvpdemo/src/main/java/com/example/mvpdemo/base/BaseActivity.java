@@ -1,15 +1,14 @@
 package com.example.mvpdemo.base;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.example.mvcdemo.R;
+import android.support.v7.app.AppCompatActivity;
 
 public abstract class BaseActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_base);
         initPresenter();
     }
 
@@ -21,4 +20,5 @@ public abstract class BaseActivity extends AppCompatActivity{
     }
     public abstract void initPresenter();
     public abstract void detachView();
+
 }

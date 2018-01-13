@@ -5,5 +5,5 @@ package com.example.mvpdemo.presenter;
  */
 
 public interface IMoviePresenter {
-    void getMovieInfo();
+    void getMovieInfo(int start ,int count);
 }
