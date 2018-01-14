@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity implements IMovieView {
         recyclerView.setAdapter(mAdapter);
         ptrClassicFrameLayout.postDelayed(new Runnable() {
             @Override
-            public void run() {
+            public void run() { 
                 ptrClassicFrameLayout.autoRefresh(true);
             }
         }, 150);
