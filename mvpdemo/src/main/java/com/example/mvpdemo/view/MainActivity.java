@@ -4,11 +4,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
 import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
@@ -20,8 +18,7 @@ import com.example.mvpdemo.presenter.impl.MoviePresentImpl;
 import com.example.mvpdemo.util.NetWorkUtil;
 import com.example.mvpdemo.util.StatusBarUtil;
 import com.example.mvpdemo.view.adapter.MovieAdapter;
-import com.example.mvpdemo.view.ui.LoadMoreFooterView;
-import com.example.mvpdemo.view.ui.RefreshHeaderView;
+import com.example.mvpdemo.view.ui.RefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,36 +28,29 @@ public class MainActivity extends BaseActivity implements IMovieView {
     private MoviePresentImpl mMoviePresenter;
     private List<DoubanMovie.SubjectsBean> mMovieInfoList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private MovieAdapter adapter;
-    private PtrClassicFrameLayout ptrClassicFrameLayout;
+    private RefreshLayout refreshLayout;
     private int start;
     private int count = 4;
-    private RecyclerAdapterWithHF mAdapter;
     private boolean isLoadMore;
+    private RecyclerAdapterWithHF mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        StatusBarUtil.setColor(this, getResources().getColor(android.R.color.white));
-        StatusBarUtil.setTransparent(this);
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.white));
         recyclerView = (RecyclerView) findViewById(R.id.rv_content);
-        ptrClassicFrameLayout = (PtrClassicFrameLayout) findViewById(R.id.ptr_container);
-        View footerView = LayoutInflater.from(this).inflate(R.layout.loader_footer_view,null);
-        ptrClassicFrameLayout.setHeaderView(new RefreshHeaderView(this));
-        ptrClassicFrameLayout.setFooterView(new LoadMoreFooterView());
-        adapter = new MovieAdapter(this, mMovieInfoList, R.layout.movie_item_layout);
-        mAdapter = new RecyclerAdapterWithHF(adapter);
-//        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        refreshLayout = (RefreshLayout) findViewById(R.id.ptr_container);
+        mAdapter = refreshLayout.getHFAdapter(new MovieAdapter(this, mMovieInfoList, R.layout.movie_item_layout));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mAdapter);
-        ptrClassicFrameLayout.postDelayed(new Runnable() {
+        refreshLayout.postDelayed(new Runnable() {
             @Override
-            public void run() { 
-                ptrClassicFrameLayout.autoRefresh(true);
+            public void run() {
+                refreshLayout.autoRefresh(true);
             }
         }, 150);
-        ptrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {
+        refreshLayout.setPtrHandler(new PtrDefaultHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
                 isLoadMore = false;
@@ -79,7 +69,7 @@ public class MainActivity extends BaseActivity implements IMovieView {
             }
         });
 
-        ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void loadMore() {
                 isLoadMore = true;
@@ -124,10 +114,10 @@ public class MainActivity extends BaseActivity implements IMovieView {
         mMovieInfoList.addAll(movieInfo.getSubjects());
         mAdapter.notifyDataSetChanged();
         if (isLoadMore) {
-            ptrClassicFrameLayout.loadMoreComplete(true);
+            refreshLayout.loadMoreComplete(true);
         } else {
-            ptrClassicFrameLayout.refreshComplete();
-            ptrClassicFrameLayout.setLoadMoreEnable(true);
+            refreshLayout.refreshComplete();
+            refreshLayout.setLoadMoreEnable(true);
         }
     }
 }

@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import com.example.mvcdemo.R;
 import com.example.mvpdemo.util.BackgroundUtil;
 import com.example.mvpdemo.util.LogUtil;
-import com.example.mvpdemo.util.StatusBarUtil;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,8 +18,8 @@ public class LoadingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
-        StatusBarUtil.setColor(this,getResources().getColor(R.color.ee68e1));
-        StatusBarUtil.setTransparent(this);
+//        StatusBarUtil.setColor(this,getResources().getColor(R.color.ee68e1));
+//        StatusBarUtil.setTransparent(this);
     }
 
     @Override
@@ -36,7 +35,7 @@ public class LoadingActivity extends AppCompatActivity {
                     finish();
                 }
             }
-        },2000);
+        },1000);
     }
 
     @Override

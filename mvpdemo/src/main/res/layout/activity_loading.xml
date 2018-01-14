@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ee68e1"
-    tools:context="com.example.mvpdemo.view.LoadingActivity">
+    android:background="#9e9e9e"
+    tools:context="com.example.mvpdemo.view.LoadingActivity"
+    >
 
 </RelativeLayout>

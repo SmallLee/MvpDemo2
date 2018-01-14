@@ -59,7 +59,7 @@ public class RefreshHeaderView extends PtrClassicDefaultHeader {
         buildAnimation();
         View header = LayoutInflater.from(getContext()).inflate(R.layout.refresh_header_view, this);
 
-        mRotateView = header.findViewById(R.id.refresh_header_ll);
+        mRotateView = header.findViewById(R.id.refresh_rotate_iv);
 
         mTitleTextView = (TextView) header.findViewById(R.id.refresh_header_title);
         mLastUpdateTextView = (TextView) header.findViewById(R.id.refresh_header_last_update);
@@ -137,9 +137,9 @@ public class RefreshHeaderView extends PtrClassicDefaultHeader {
         mRotateView.setVisibility(VISIBLE);
         mTitleTextView.setVisibility(VISIBLE);
         if (frame.isPullToRefresh()) {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
+            mTitleTextView.setText(getResources().getString(R.string.refresh_pull_down_to_refresh));
         } else {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down));
+            mTitleTextView.setText(getResources().getString(R.string.refresh_pull_down));
         }
     }
 
@@ -149,7 +149,7 @@ public class RefreshHeaderView extends PtrClassicDefaultHeader {
         hideRotateView();
         mProgressBar.setVisibility(VISIBLE);
         mTitleTextView.setVisibility(VISIBLE);
-        mTitleTextView.setText(R.string.cube_ptr_refreshing);
+        mTitleTextView.setText(R.string.refreshing);
 
         tryUpdateLastUpdateTime();
         mLastUpdateTimeUpdater.stop();
@@ -162,7 +162,7 @@ public class RefreshHeaderView extends PtrClassicDefaultHeader {
         mProgressBar.setVisibility(INVISIBLE);
 
         mTitleTextView.setVisibility(VISIBLE);
-        mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refresh_complete));
+        mTitleTextView.setText(getResources().getString(R.string.refresh_complete));
 
         // update last update time
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(KEY_SharedPreferences, 0);
@@ -254,16 +254,16 @@ public class RefreshHeaderView extends PtrClassicDefaultHeader {
     private void crossRotateLineFromTopUnderTouch(PtrFrameLayout frame) {
         if (!frame.isPullToRefresh()) {
             mTitleTextView.setVisibility(VISIBLE);
-            mTitleTextView.setText(R.string.cube_ptr_release_to_refresh);
+            mTitleTextView.setText(R.string.release_to_refresh);
         }
     }
 
     private void crossRotateLineFromBottomUnderTouch(PtrFrameLayout frame) {
         mTitleTextView.setVisibility(VISIBLE);
         if (frame.isPullToRefresh()) {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
+            mTitleTextView.setText(getResources().getString(R.string.refresh_pull_down_to_refresh));
         } else {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down));
+            mTitleTextView.setText(getResources().getString(R.string.refresh_pull_down));
         }
     }
 
