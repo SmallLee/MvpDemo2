@@ -5,7 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 判断网络状态需要添加此权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <application
         android:name="com.example.mvpdemo.common.MovieApplication"
         android:allowBackup="true"
@@ -14,9 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppStartLoad">
         <activity android:name="com.example.mvpdemo.view.MainActivity" />
-        <activity android:name="com.example.mvpdemo.view.LoadingActivity">
-        </activity>
+        <activity android:name="com.example.mvpdemo.view.LoadingActivity"></activity>
         <activity android:name="com.example.mvpdemo.view.SecondActivity">
+        </activity>
+        <activity android:name="com.example.mvpdemo.view.ThirdActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
