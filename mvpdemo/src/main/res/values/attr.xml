@@ -24,4 +24,13 @@
     <declare-styleable name="PtrClassicHeader">
         <attr name="ptr_rotate_ani_time" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="ImageVerifyCode">
+        <attr name="codeTextSize" format="dimension"/>
+        <attr name="codeBackground" format="color"/>
+        <attr name="codeLength" format="integer"/>
+        <attr name="isContainChar" format="boolean"/>
+        <attr name="pointNum" format="integer"/>
+        <attr name="linNum" format="integer"/>
+    </declare-styleable>
 </resources>
